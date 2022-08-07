@@ -1,4 +1,5 @@
 <!DOCTYPE html><!-- //Developer.mozilla.org -->
+<!--Menu Principal-->
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="estilos.css" />
@@ -7,51 +8,41 @@
 </head>
 <body>
     <div class="page-nav">
-        <h1>Tienda</h1>
+        <h1><a title="Logo" href="index.html">
+            <img src="image/Logo.png" alt=""/></a> Tienda</h1>
 
-        <button id="checkout" class="button-checkout" onclick="pay()">Pagar</button>
+        <button id="checkout" class="button-checkout" onclick="pay()">Carrito</button>
     </div>
-    <div class="page-content">
+        <div class="page-content">
         <div class="product-container">
-            <h3>Monitor Small</h3>
-            <img src="images/M_Small.jpg" alt=""/>
-            <h1>$100</h1>
-            <button class="button-add" onclick="add('product-1', 50)">Agregar</button>
+            <h3>Monitores</h3>
+            
+            <a title="Monitores" href="monitores.html">
+            <img src="imageCateg/Monitor.png" alt=""/></a>
+
         </div>
 
         <div class="product-container">
-            <h3>Monitor Mediano</h3>
-            <img src="images/M_Med.jpg" alt=""/>
-            <h1>$150</h1>
-            <button class="button-add" onclick="add('product-2', 300)">Agregar</button>
+            <h3>Audifonos</h3>
+            
+            <a title="Audifonos" href="audifonos.html">
+            <img src="imageCateg/Audifonos.png" alt=""/></a>
+            
         </div>
 
         <div class="product-container">
-            <h3>Monitor Grande HD</h3>
-            <img src="images/M_GrandeHD.jpg" alt=""/>
-            <h1>$250</h1>
-            <button class="button-add" onclick="add('product-3', 250)">Agregar</button>
+            <h3>Mouses y Teclados</h3>
+            
+            <a title="Mouses y teclados" href="tecladoRaton.html">
+            <img src="imageCateg/MouseTeclado.png" alt=""/></a>
         </div>
-
+            
         <div class="product-container">
-            <h3>Monitor Grande</h3>
-            <img src="images/M_Grande.jpg" alt=""/>
-            <h1>$200</h1>
-            <button class="button-add" onclick="add('product-4', 200)">Agregar</button>
-        </div>
+            <h3>Contactenos</h3>
+            
+            <a title="Contactos" href="contactos.html">
+            <img src="image/Atencion.png" alt=""/></a>
+        </div>    
 
-        <div class="product-container">
-            <h3>Monitor Curvo</h3>            
-            <img src="images/M_Curvo.jpg" alt=""/>
-            <h1>$250</h1>
-            <button class="button-add" onclick="add('product-5', 10)">Agregar</button>
-        </div>
-
-        <div class="product-container">
-            <h3>Monitor de 144hz</h3>
-            <img src="images/M_144hz.jpg" alt=""/>
-            <h1>$210</h1>
-            <button class="button-add" onclick="add('product-6', 650)">Agregar</button>
-        </div>
     </div>
 </body>
