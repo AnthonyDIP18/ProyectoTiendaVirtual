@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla :: head">
+        <link rel="stylesheet" type="text/css" href="static/css/login.css" th:href="@{/css/login.css}">
+            <title>login</title>
+
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
+        <section id="actions" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">                   
+                </div>
+            </div>
+        </section>
+
+        <section id="login">
+            <div id="template-bg-1">
+                <div class="d-flex flex-column min-vh-100  align-items-center">
+                    <div class="card p-4 text-light bg-dark mb-5">
+                        <div class="card-header">
+                            <h3>Iniciar sesión </h3>
+                        </div>
+                        <div class="card-body w-100">
+                            <form method="POST" th:action="@{/login}">
+                                <div class="input-group form-group mt-3">
+                                    <div class="bg-secondary rounded-start">
+                                        <span class="m-3"><i class="fas fa-user mt-2"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Usuario"
+                                           name="username">
+                                </div>
+                                <div class="input-group form-group mt-3">
+                                    <div class="bg-secondary rounded-start">
+                                        <span class="m-3"><i class="fas fa-key mt-2"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Contraseña" name="password">
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <button type="submit" class="btn bg-secondary float-end text-white w-100">Ingresar</button>
+
+                                    </section>
+
+                                    </body>
+                                    </html>

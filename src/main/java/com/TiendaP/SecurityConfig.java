@@ -11,19 +11,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+    
+    
     @Autowired
     UsuarioDetailsServiceImpl userDetailsService;
+    
 
-    @Override
+    @Override 
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    
 
-        auth.userDetailsService(userDetailsService);
+            auth.userDetailsService(userDetailsService);
+                       
+}
 
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+@Override 
+protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/articulo/nuevo", "/articulo/guardar",
                         "/articulo/modificar/**", "/articulo/eliminar/**",
@@ -38,6 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/")
                 .hasAnyRole("ADMIN", "VENDEDOR", "USER")
                 .and()
+                .formLogin()
+                .loginPage("/login")
+                .and()
                 .exceptionHandling().accessDeniedPage("/errores/403");
     }
 }
+
+
+
+

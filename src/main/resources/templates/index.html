@@ -2,49 +2,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://wwww.thymeleaf.org" 
       xmlns:sec="http://thymeleaft.org/extras/spring-security">
-<head>
-    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilos.css" />
     
-</head>
-<body>
-    <div class="page-nav">
-        <h1><a title="Logo" href="index.html">
-            <img src="image/Logo.png" alt=""/></a> Tienda</h1>
+    <head th:replace="layout/plantilla :: head">
 
-        <button id="checkout" class="button-checkout" onclick="pay()">Carrito</button>
-    </div>
-        <div class="page-content">
-        <div class="product-container">
-            <h3>Monitores</h3>
-            
-            <a title="Monitores" href="monitores.html">
-            <img src="imageCateg/Monitor.png" alt=""/></a>
+        <title>Pagina Principal</title>
 
+    </head>
+    
+    <body>
+        <header th:replace="layout/plantilla :: header"/>
+        <div class="container">
+            <h2 >Nuestros Articulos</h2>            
+            <div class="row row-cols-3" th:if="${articulos != null and !articulos.empty}">
+                <div class="card" th:each="articulo : ${articulos}" >
+                   <!--<img src="/images/Equipo2.jpg" class="card-img-top" alt="equipo">  -->
+                    <div class="card-body">
+                        <h5 class="card-title">[[${articulo.descripcion}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-muted text-end">[[${new java.text.DecimalFormat('¢#,##0.00').format(articulo.precio)}]]</h6>
+                        <a class="card-link" th:href="@{/carrito/agregar/} + ${articulo.idArticulo}">Comprar]</a>
+                        <p class="card-text">[[${articulo.detalle}]]</p>                        
+                    </div>
+                </div>                
+            </div>
+            <div th:if="${articulos == null or articulos.empty}">
+                No tenemos lista de articulos que mostrar...
+            </div>
         </div>
-
-        <div class="product-container">
-            <h3>Audifonos</h3>
-            
-            <a title="Audifonos" href="audifonos.html">
-            <img src="imageCateg/Audifonos.png" alt=""/></a>
-            
-        </div>
-
-        <div class="product-container">
-            <h3>Mouses y Teclados</h3>
-            
-            <a title="Mouses y teclados" href="tecladoRaton.html">
-            <img src="imageCateg/MouseTeclado.png" alt=""/></a>
-        </div>
-            
-        <div class="product-container">
-            <h3>Contactenos</h3>
-            
-            <a title="Contactos" href="contactos.html">
-            <img src="image/Atencion.png" alt=""/></a>
-        </div>    
-
-    </div>
-</body>
+       
+    </body>
 </html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="layout/plantilla :: head">
+        <title>Articulos</title>
+    </head>
+    <body>
+
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarArticulo">
+                            <i class="fas fa-plus"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="listadoArticulo" id="articulo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Articulos</h4>
+                            </div>
+                            <div th:if="${articulos != null and !articulos.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Descripción</th>   
+                                            <th>Precio</th>       
+                                            <th>Existencias</th> 
+                                            <th>Activo</th>               
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="articulo, contador : ${articulos}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${articulo.descripcion}]]</td>
+                                            <td>[[${new java.text.DecimalFormat('$#,##0.00').format(articulo.precio)}]]</td>
+                                            <td>[[${articulo.existencias}]]</td>
+                                            <td>[[${articulo.activo}]]</td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/articulo/eliminar/}+${articulo.idArticulo}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-angle-double-right"></i> Eliminar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/articulo/modificar/}+${articulo.idArticulo}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-angle-double-right"></i> Actulizar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarArticulo">
+            <div id="agregarArticulo" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Agregar Articulo a la tienda</h5>  
+                        </div>
+                        <div class="modal-body">                        
+                            <form th:action="@{/articulo/guardar}" th:object="${articulo}" method="POST">
+                                <div class="form-group">
+                                    <label for="descripcion" class="form-label">Descripcion</label>
+                                    <input type="text" class="form-control" name="descripcion" required="true">
+                                </div>
+                                <br>
+
+                                <div class="input-group">
+                                    <span class="input-group-text">Detalle</span>
+                                    <textarea class="form-control" name="detalle" aria-label="detalle"></textarea>
+                                </div>
+                                <br>
+
+
+                                <div class="input-group mb-3">
+
+                                    <span class="input-group-text"> Precio $</span>                                   
+                                    <input type="text" class="form-control" name="precio" required="true">
+                                    <span class="input-group-text">.00</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="existencias" class="form-label">Existencias</label>
+                                    <input type="number" class="form-control" name="existencias" required="true">
+
+                                </div>
+                                <br>
+                                <div class="col-md-16">                              
+                                    <input class="form-check-input" type="checkbox" name="activo">
+                                    <label class="form-check-label" for="activo"> Seleccionar si el articulo esta activo</label>                               
+                                </div>
+                                <br>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" type="submit" >Agregar</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section th:fragment="editarArticulo">            
+            <form method="POST"
+                  th:action="@{/articulo/guardar}"
+                  th:object="${articulo}"
+                  class="was-validated">
+                <input type="hidden" name="idArticulo" th:field="*{idArticulo}"/>
+                <section th:replace="articulo/fragmentosArticulo :: botonesEditar"/> 
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Actualizar</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="descripcion" >Descripcion</label>
+                                            <input type="text" class="form-control" name="descripcion" required="true">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="precio">Precio</label>
+                                            <input type="text" class="form-control" name="precio" required="true">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="existencias">Existencias</label>
+                                            <input type="text" class="form-control" name="existencias" required="true">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="activo">activo</label>
+                                            <input type="checkbox" class="form-control" name="activo" required="true">
+                                        </div>                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+
+        <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a th:href="@{/articulo/listado}" class="btn btn-ligth btn-block">
+                                <i class="fas fa-arrow-left"></i> Regresar
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> Guardar
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <a th:href="@{/articulo/eliminar/}+${articulo.idArticulo}"
+                               class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    </body>
+</html>

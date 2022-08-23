@@ -1,15 +1,70 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:sec="http://thymeleaf.org/extras/spring-security">
+    <head th:fragment="head">
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" src="js/jquery-3.2.1.slim.min.js"></script>
+        <script type="text/javascript" src="js/popper.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="container">
+            <div class="container">
+                <header class="d-flex flex-wrap align-items-center justify-content-center  py-2 mb-8 border-bottom">
+                    <a href="/" class="d-flex align-items-center col-md-3 mb-0 mb-md-0 text-dark text-decoration-none">
+                        <span class="fs-2">Tienda Virtual</span>
+                    </a>
+                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="#" class="nav-link px-2 link-dark">Componentes</a></li>
+                        <li><a href="#" class="nav-link px-2 link-dark">Perifericos</a></li>
+                        <li><a href="#" class="nav-link px-2 link-dark">Accesorios</a></li>
+                        <li><a href="#" class="nav-link px-2 link-dark">Celulares</a></li>                       
+                        <div class="dropdown" >
+                            <a href="#" class="nav-link px-2 link-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"  >Gerencia</a>
+                            
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" th:href="@{/cliente/listado}">Clientes</a></li>
+                                <li><a class="dropdown-item" th:href="@{/articulo/listado}">Articulos</a></li>
+                                <li><a class="dropdown-item" th:href="@{/categoria/listado}">Categorias</a></li>
+                            </ul>
+                        </div>
+
+
+                    </ul>
+
+                    <div class="col-md-3 text-end">
+
+
+                        <form method="POST" th:action="@{/logout}">
+                            <a href="#" onclick="this.parentNode.submit();" class="btn btn-outline-primary me-2">
+                                <i class="fas fa-user-times"></i> Cerrar Seccion
+                            </a>
+
+                            <a th:href="@{/carrito/listado}" class="btn btn-outline-primary me-4">
+                                <i class="fas fa-shopping-cart"></i> Carrito
+                                <span th:text="${cantidadArticulosCarrito}" class="btn btn-danger">Cantidad</span>
+                            </a>
+                        </form>
+
+
+
+
+                    </div>
+                </header>
+            </div>
+
+            <div class="b-example-divider"></div>
+            </header>
+        </div>
+
+
     </body>
 </html>
+
