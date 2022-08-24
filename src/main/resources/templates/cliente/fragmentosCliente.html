@@ -4,44 +4,29 @@
     <head th:replace="layout/plantilla :: head">
         <title>Clientes</title>
     </head>
-    <body>
-
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#agregarCliente">
-                            <i class="fas fa-plus"></i> Agregar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+    <body>        
         <section th:fragment="listadoClientes" id="clientes">
+                                 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4>Cliente</h4>
-                            </div>
+                    <div class="col-md-12">
+                        <div class="card">                         
                             <div th:if="${clientes != null and !clientes.empty}">
-                                <table class="table table-stryped">
-                                    <thead class="thead-dark">
-                                        <tr>
+                                <div class="table-responsive">
+                                    
+                                    <table class="table table-condesed  table-hover">
+                                 
+                                    <tr class="table-dark "> 
                                             <th>#</th>
                                             <th>Nombre</th>
                                             <th>Correo</th>
                                             <th>Telefono</th>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                    </thead>
+                               
                                     <tbody>
-                                        <tr th:each="cliente, contador : ${clientes}">
+                                        <tr  th:each="cliente, contador : ${clientes}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${cliente.nombre} + ' ' + ${cliente.apellidos}]]</td>
                                             <td> [[${cliente.correo}]]</td>
@@ -54,13 +39,17 @@
                                             </td>
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/modificar/}+${cliente.idCliente}"
-                                                   class="btn btn-success">
+                                                   class="btn btn-warning">
                                                     <i class="fas fa-angle-double-right"></i> Actualizar
                                                 </a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                    
+                                    
+                                </div>
+                                
                             </div>
                             <div class="text-center p-2" th:if="${clientes == null or clientes.empty}">
                                 <span>Lista vacía</span>
@@ -68,6 +57,28 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+        
+        
+        <section th:fragment="botonesAgregar" class="py-2 mb-2 bg-light">
+            <div class="card-body text-center">
+                
+               <h1 class="card-title">Tabla Clientes</h1>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarCliente">
+                            <i class="fas fa-plus"></i> Agregar
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -89,6 +100,9 @@
                                             <input type="text" class="form-control" name="nombre" required="true">
 
                                         </div>
+                                        
+                                        
+                                        
                                         <div class="col">
                                             <label for="apellidos" class="form-label">Apellidos</label>
                                             <input type="text" class="form-control" name="apellidos" required="true">
