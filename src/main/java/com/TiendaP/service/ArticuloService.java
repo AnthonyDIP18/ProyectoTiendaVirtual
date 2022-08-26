@@ -12,5 +12,7 @@ public interface ArticuloService {
     public void save(Articulo articulo);
 
     public void delete(Articulo articulo);
+    
+    List<Articulo> buscarPorCategoria(Long idCategoria );
 
 }

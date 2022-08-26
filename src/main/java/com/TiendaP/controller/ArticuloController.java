@@ -60,4 +60,13 @@ public class ArticuloController {
         
     }
     
+    
+    @GetMapping("/articulo/componentes")
+    public String buscarPorCategoria(@RequestParam Long idCategoria, Model model, @ModelAttribute("articulo") Articulo articulo ){
+        model.addAttribute("categoriaPorId", articuloService.buscarPorCategoria(idCategoria));
+        return "redirect:/articulo/componentes";
+    }
+    
+    
+    
 }

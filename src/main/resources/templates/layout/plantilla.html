@@ -22,12 +22,12 @@
                         <span class="fs-2">Tienda Virtual</span>
                     </a>
                     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="#" class="nav-link px-2 link-dark">Componentes</a></li>
-                        <li><a href="#" class="nav-link px-2 link-dark">Perifericos</a></li>
-                        <li><a href="#" class="nav-link px-2 link-dark">Accesorios</a></li>
-                        <li><a href="#" class="nav-link px-2 link-dark">Celulares</a></li>                       
+                        <li><a th:href="@{/articulo/componentes}" class="nav-link px-2 link-dark">Componentes</a></li>
+                        <li><a th:href="@{/articulo/perifericos}" class="nav-link px-2 link-dark">Perifericos</a></li>
+                        <li><a th:href="@{/articulo/accesorios}" class="nav-link px-2 link-dark">Accesorios</a></li>
+                        <li><a th:href="@{/articulo/celulares}" class="nav-link px-2 link-dark">Celulares</a></li>                       
                         <div class="dropdown" >
-                            <a href="#" class="nav-link px-2 link-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"  >Gerencia</a>
+                            <a sec:authorize="hasRole('ROLE_ADMIN')" href="#" class="nav-link px-2 link-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"  >Gerencia</a>
                             
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" th:href="@{/cliente/listado}">Clientes</a></li>
@@ -42,7 +42,7 @@
                     <div class="col-md-3 text-end">
 
 
-                        <form method="POST" th:action="@{/logout}">
+                        <form sec:authorize="isAuthenticated()" method="POST" th:action="@{/logout}">
                             <a href="#" onclick="this.parentNode.submit();" class="btn btn-outline-primary me-2">
                                 <i class="fas fa-user-times"></i> Cerrar Seccion
                             </a>
@@ -52,10 +52,6 @@
                                 <span th:text="${cantidadArticulosCarrito}" class="btn btn-danger">Cantidad</span>
                             </a>
                         </form>
-
-
-
-
                     </div>
                 </header>
             </div>

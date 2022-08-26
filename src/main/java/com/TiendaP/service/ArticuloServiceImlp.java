@@ -45,4 +45,9 @@ public class ArticuloServiceImlp implements ArticuloService {
         
     }
 
+    @Override
+    public List<Articulo> buscarPorCategoria(Long idCategoria) {
+        return articuloDao.findByIdCategoria(idCategoria);
+    }
+
 }
