@@ -18,7 +18,7 @@
                     <h1 id="center_column" class="page-heading" >Nuestros Articulos</h2>  
                     <br>
                     <div class="row row-cols-3" th:if="${articulos != null and !articulos.empty}">
-                        <div class="card" th:each="articulo : ${articulos}" >
+                        <div class="card" th:each="articulo : ${buscarPorCategoria}" >
                             <!--<img src="/images/Equipo2.jpg" class="card-img-top" alt="equipo">  -->
                             <div class="card-body">
                                 <h5 class="card-title">[[${articulo.descripcion}]]</h5>

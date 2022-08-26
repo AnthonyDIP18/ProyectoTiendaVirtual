@@ -64,4 +64,5 @@ public class CarritoController {
         model.addAttribute("montoTotal", montoTotal);
         return "/carrito/listado";
     }
+    
 }

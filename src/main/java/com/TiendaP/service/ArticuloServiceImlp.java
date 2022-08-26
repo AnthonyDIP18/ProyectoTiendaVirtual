@@ -13,6 +13,7 @@ public class ArticuloServiceImlp implements ArticuloService {
 
     @Autowired
     private ArticuloDao articuloDao;
+    private Long idCategoria;
 
     @Override
     @Transactional(readOnly = true)
@@ -46,7 +47,7 @@ public class ArticuloServiceImlp implements ArticuloService {
     }
 
     @Override
-    public List<Articulo> buscarPorCategoria(Long idCategoria) {
+    public List<Articulo> buscarPorCategoria(Articulo articulo) {
         return articuloDao.findByIdCategoria(idCategoria);
     }
 

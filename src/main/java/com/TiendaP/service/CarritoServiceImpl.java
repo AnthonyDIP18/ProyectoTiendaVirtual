@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.TiendaP.service;
 
 import com.TiendaP.dao.CarritoDao;
@@ -11,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CarritoServiceImpl implements CarritoService {
+    
     @Autowired  
     CarritoDao carritoDao; 
     
@@ -28,5 +26,7 @@ public class CarritoServiceImpl implements CarritoService {
         }
         return carrito;
     }
+
+    
     
 }

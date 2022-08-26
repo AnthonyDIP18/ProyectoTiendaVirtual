@@ -13,6 +13,6 @@ public interface ArticuloService {
 
     public void delete(Articulo articulo);
     
-    List<Articulo> buscarPorCategoria(Long idCategoria );
+    List<Articulo> buscarPorCategoria(Articulo articulo);
 
 }

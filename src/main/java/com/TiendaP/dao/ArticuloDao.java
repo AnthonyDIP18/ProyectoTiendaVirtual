@@ -8,5 +8,7 @@ public interface ArticuloDao extends CrudRepository<Articulo,Long>{
     
     
     List<Articulo> findByIdCategoria(Long idCategoria );
+
+    public List<Articulo> findByIdCategoria(Articulo idCategoria);
     
 }
